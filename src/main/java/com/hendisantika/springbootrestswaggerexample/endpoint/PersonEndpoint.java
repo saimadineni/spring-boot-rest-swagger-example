@@ -43,7 +43,7 @@ public class PersonEndpoint extends BaseEndpoint {
     @Autowired
     PersonService personService;
 
-    @RequestMapping(path = "/v1/persons", method = RequestMethod.GET)
+    @RequestMapping(path = "/v1/jobs", method = RequestMethod.GET)
     @ApiOperation(
             value = "Get all persons",
             notes = "Returns first N persons specified by the size parameter with page offset specified by page parameter.",
@@ -68,7 +68,7 @@ public class PersonEndpoint extends BaseEndpoint {
         return persons;
     }
 
-    @RequestMapping(path = "/v1/person/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/v1/job/{id}", method = RequestMethod.GET)
     @ApiOperation(
             value = "Get person by id",
             notes = "Returns person for id specified.",
@@ -80,7 +80,7 @@ public class PersonEndpoint extends BaseEndpoint {
         return (!person.isPresent() ? ResponseEntity.status(HttpStatus.NOT_FOUND) : ResponseEntity.ok()).body(person.get());
     }
 
-    @RequestMapping(path = "/v1/person", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @RequestMapping(path = "/v1/job", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ApiOperation(
             value = "Create new or update existing person",
             notes = "Creates new or updates exisitng person. Returns created/updated person with id.",

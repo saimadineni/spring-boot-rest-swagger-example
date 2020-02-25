@@ -3,7 +3,6 @@ package com.hendisantika.springbootrestswaggerexample.domain;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,106 +20,77 @@ import java.util.Set;
 public class Person {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="person_id")
+    @Column(name="job_id")
     private Long id;
 
     @NotNull
-    @Column(name="first_name", nullable = false)
-    private String firstName;
+    @Column(name="job_name", nullable = false)
+    private String jobName;
 
     @NotNull
-    @Column(name="last_name", nullable = false)
-    private String lastName;
+    @Column(name="schedule", nullable = false)
+    private String schedule;
 
-    @Column(name="middle_name")
-    private String middleName;
-
-    @Column(name="dob")
-    private Date dateOfBirth;
-
-    @Column(name="gender")
-    private Gender gender;
+    @Column(name="job_Family")
+    private String jobFamily;
 
     @Valid
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
-    private Set<Address> addresses;
+    @JoinColumn(name = "job_id")
+    private Set<Dependency> Deps;
 
     protected Person() {}
 
-    public Person(Long id, String firstName, String lastName) {
+    public Person(Long id, String jobName, String jobFamily) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.jobName = jobName;
+        this.jobFamily = jobFamily;
     }
 
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person(String jobName, String jobFamily) {
+        this.jobName = jobName;
+        this.jobFamily = jobFamily;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getJobName() {
+        return jobName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setJobNameName(String jobName) {
+        this.jobName = jobName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSchedule() {
+        return schedule;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getJobFamily() {
+        return jobFamily;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setJobFamily(String jobFamily) {
+        this.jobFamily = jobFamily;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
+    public Set<Dependency> getDeps() { return Deps; }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+    public void setDeps(Set<Dependency> Deps) { this.Deps = Deps; }
 
-    public Gender getGender() {
-        return gender;
-    }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
+    public void addDependency(Dependency dependency) {
 
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
-    }
-
-    public void addAddress(Address address) {
-
-        if (getAddresses() == null) {
-            setAddresses(new HashSet<>());
+        if (getDeps() == null) {
+            setDeps(new HashSet<>());
         }
-        getAddresses().add(address);
-    }
-
-    public static enum Gender {
-        M, F;
+        getDeps().add(dependency);
     }
 
 }

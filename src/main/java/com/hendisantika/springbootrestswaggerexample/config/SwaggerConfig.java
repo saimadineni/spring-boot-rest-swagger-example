@@ -38,11 +38,11 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "PersonSearchApplication",
-                "An application to search Person from a Person repository by personId",
-                "PersonSearchApplication v1",
+                "Argo Job Scheduler",
+                "An application to manage argo jobs",
+                "Argo job scheduler v1",
                 "Terms of service",
-                "hendisantika@gmail.com",
+                "sai_madineni@intuit.com",
                 "License of API",
                 "https://swagger.io/docs/");
         return apiInfo;
